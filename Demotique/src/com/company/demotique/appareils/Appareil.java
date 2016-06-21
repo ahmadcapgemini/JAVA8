@@ -1,4 +1,4 @@
-package appareil;
+package com.company.demotique.appareils;
 
 public abstract class Appareil {
 

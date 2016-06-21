@@ -1,4 +1,4 @@
-package appareil;
+package com.company.demotique.appareils;
 
 public class AppareilThermostate extends AppareilElectrique {
 
