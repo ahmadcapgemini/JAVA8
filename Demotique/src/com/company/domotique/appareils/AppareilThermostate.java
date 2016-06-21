@@ -1,4 +1,4 @@
-package com.company.demotique.appareils;
+package com.company.domotique.appareils;
 
 public class AppareilThermostate extends AppareilElectrique {
 
@@ -6,11 +6,6 @@ public class AppareilThermostate extends AppareilElectrique {
 	private int incPuissance = 20;
 	private int valeurThermostatMax = 0;
 	private int valeurThermostat = 0;
-
-
-
-
-
 
 	public void setValeurThermostat(int valeurThermostat) {
 		this.valeurThermostat = valeurThermostat;
@@ -52,11 +47,15 @@ public class AppareilThermostate extends AppareilElectrique {
 		}
 	}
 
-	public int incrementerThermostat(){
-		if(this.valeurThermostat<this.valeurThermostatMax){
-			this.valeurThermostat +=1;
+	public int incrementerThermostat() {
+		int res = 0;
+		if (this.valeurThermostat < 0 || this.valeurThermostatMax < 0) {
+			res = -1;
+		} else if (this.valeurThermostat < this.valeurThermostatMax) {
+			this.valeurThermostat += 1;
+			res = this.valeurThermostat;
 		}
-		return this.valeurThermostat;
+		return res;
 	}
 
 	@Override
@@ -65,8 +64,5 @@ public class AppareilThermostate extends AppareilElectrique {
 				+ ", valeurThermostatMax=" + valeurThermostatMax + ", valeurThermostat=" + valeurThermostat
 				+ ", toString()=" + super.toString() + "]";
 	}
-
-
-
 
 }

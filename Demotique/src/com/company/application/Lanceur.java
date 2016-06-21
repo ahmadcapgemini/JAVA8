@@ -1,7 +1,7 @@
-package lanceur;
+package com.company.application;
 
-import com.company.demotique.appareils.AppareilElectrique;
-import com.company.demotique.appareils.AppareilThermostate;
+import com.company.domotique.appareils.AppareilElectrique;
+import com.company.domotique.appareils.AppareilThermostate;
 
 public class Lanceur {
 
