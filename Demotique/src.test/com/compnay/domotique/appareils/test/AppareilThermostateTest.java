@@ -14,7 +14,7 @@ public class AppareilThermostateTest {
 		AppareilThermostate chauffage = new AppareilThermostate("Philips", "4315", 1000, 100, 10);
 		chauffage.demarrer();
 		
-		int valeurThermostat = 9; 
+		int valeurThermostat = 7; 
 		chauffage.setValeurThermostat(valeurThermostat);  
 		chauffage.incrementerThermostat();
 		int nouvelleValeurThermostat = chauffage.getValeurThermostat();
@@ -55,17 +55,31 @@ public class AppareilThermostateTest {
 	}
 	
 	@Test
-	public void testIncrementerThermostatWhenThermostatMaxIsSetNegatif() {
-		AppareilThermostate chauffage = new AppareilThermostate("Philips", "4315", 1000, 100, -111);
+	public void testIncrementerThermostatWhenThermostatIsNegatif() {
+		AppareilThermostate chauffage = new AppareilThermostate("Philips", "4315", 1000, 100, 10);
 		chauffage.demarrer();
 		
-		int valeurThermostat = chauffage.getValeurThermostatMax(); 
+		int valeurThermostat = -7; 
 		chauffage.setValeurThermostat(valeurThermostat);  
 		chauffage.incrementerThermostat();
 		int nouvelleValeurThermostat = chauffage.getValeurThermostat();
 		
-		//à vérifier que la valeur n'a pas changé 
+		//Erreur car valeurMaxThermostat <0
 		assertEquals(-1, nouvelleValeurThermostat);
+	}
+
 	
+	@Test
+	public void testIncrementerThermostatWhenThermostatMaxIsNegatif() {
+		AppareilThermostate chauffage = new AppareilThermostate("Philips", "4315", 1000, 100, -10);
+		chauffage.demarrer();
+		
+		int valeurThermostat = 7; 
+		chauffage.setValeurThermostat(valeurThermostat);  
+		chauffage.incrementerThermostat();
+		int nouvelleValeurThermostat = chauffage.getValeurThermostat();
+		
+		//Erreur car valeurMaxThermostat <0
+		assertEquals(-1, nouvelleValeurThermostat);
 	}
 }
