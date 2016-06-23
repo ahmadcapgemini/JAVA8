@@ -1,5 +1,7 @@
 package com.company.domotique.appareils;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Enumeration;
 import java.util.Vector;
 
@@ -21,11 +23,11 @@ public class Bordereau extends Vector<AppareilElectrique> {
 	 */
 	public Bordereau() {
 		super();
-		// TODO Auto-generated constructor stub
+	
 	}
 
-	public void trierCroissant (){
-		
+	public void trierCroissant (){ 
+		Collections.sort(this, new SortByCroissant());
 		
 	}
 

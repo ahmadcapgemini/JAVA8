@@ -1,7 +1,7 @@
 package com.company.domotique.appareils;
 
 
-public class AppareilElectrique extends Appareil {
+public class AppareilElectrique extends Appareil implements ConsommateurDeCourant {
 
 	protected int iPuissanceMaxWatts=0;
 	protected boolean isEnMarche=false;

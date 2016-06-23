@@ -2,9 +2,14 @@ package com.company.domotique.application;
 
 
 
+import java.util.ArrayList;
+
 import com.company.domotique.appareils.AppareilElectrique;
 import com.company.domotique.appareils.AppareilSecurise;
+import com.company.domotique.appareils.AppareilThermostate;
 import com.company.domotique.appareils.Bordereau;
+import com.company.domotique.appareils.Compteur;
+import com.company.domotique.ihm.CadreGeneral;
 
 
 public class Lanceur {
@@ -46,8 +51,8 @@ public class Lanceur {
 		ordinateur.demarrer();
 
 		//etc...................................*/
-		AppareilSecurise microOnde= new AppareilSecurise("Philips", "mod123", 250, 10, false);
-		AppareilSecurise microOnde2= new AppareilSecurise("Moulinex", "v32", 350, 10, false);
+		AppareilSecurise microOnde= new AppareilSecurise("Philips", "mod123", 100, 1, false);
+		AppareilSecurise microOnde2= new AppareilSecurise("Moulinex", "v32", 500, 5, false);
 		System.out.println("Bonjour");
 		System.out.println("***********************");
 		System.out.println(microOnde);
@@ -73,14 +78,55 @@ public class Lanceur {
 		
 		
 		
-		AppareilElectrique nouvelAppareil = new AppareilElectrique("philips", "300", 10000);
+		AppareilSecurise nouvelAppareil = new AppareilSecurise("Philips", "mod123", 900, 9, false);
+
 		Bordereau testBordereau = new Bordereau();
 		testBordereau.add(microOnde);
 		testBordereau.add(microOnde2);
 		testBordereau.add(nouvelAppareil);
 		testBordereau.afficher();
+		System.out.println("***********************");
+		System.out.println("Après un tri par ordre croissant");
+		
+		testBordereau.trierCroissant();
+		testBordereau.afficher();
+		
+		System.out.println("***********************");
+		System.out.println("***********************");
+		Compteur compteur = new Compteur("compteur", "modéle", 1000); //création compteur
+		compteur.demarrer(); microOnde.demarrer(); microOnde2.demarrer(); nouvelAppareil.demarrer();//démarrage compteur et les trois appareils
+		microOnde.setValeurThermostat(microOnde.getValeurThermostatMax());// initiation objets 
+		microOnde2.setValeurThermostat(microOnde2.getValeurThermostatMax());
+		nouvelAppareil.setValeurThermostat(nouvelAppareil.getValeurThermostatMax());
+	
+		compteur.brancher(microOnde);
+		compteur.brancher(microOnde2);
+		compteur.brancher(nouvelAppareil);
+	
+		
+		System.out.println("***********************");
+		System.out.println("***********************");
+		
+		
+		
+		
+		
+		
+		
+	
+		/*ArrayList alAppElec = new ArrayList();
+		ArrayList alAppThermos = new ArrayList();
+		
+
+		AppareilElectrique unOrdinateur = new AppareilElectrique("DELL","GX100",500);
+		AppareilThermostate unMicroOnde = new AppareilThermostate("Philips","mod123",250);
+		Compteur unCompteurEDF = new Compteur(1250);
 
 		
+		unCompteurEDF.brancher(unOrdinateur);
+		unCompteurEDF.brancher(unMicroOnde);
+			
+		CadreGeneral monInterface = new CadreGeneral(unOrdinateur, unMicroOnde, unCompteurEDF);	*/
 		
 	
 	

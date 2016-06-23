@@ -2,21 +2,31 @@ package com.company.domotique.appareils;
 
 import java.util.Comparator;
 
-public class SortByCroissant implements Comparator<AppareilElectrique> {
-	
-		Bordereau bordereau1 = new Bordereau();
+public class SortByCroissant implements Comparator<Object> {
+
+	public int compare(Object pObj1, Object pObj2) {
+		String marque1 = ((AppareilElectrique) pObj1).getMarque();
+		String marque2 = ((AppareilElectrique) pObj2).getMarque();
+		String modele1 = ((AppareilElectrique) pObj1).getModele();
+		String modele2 = ((AppareilElectrique) pObj2).getModele();
+		int puissanceMax1 = ((AppareilElectrique) pObj2).getPuissanceMaxWatts();
+		int puissanceMax2 = ((AppareilElectrique) pObj2).getPuissanceMaxWatts();
+
+		int resultat = (marque1.compareTo(marque2));
 		
-		
-		
-	public int compare (AppareilElectrique appareilElectrique1, AppareilElectrique appareilElectrique2){
-		
-		String chaine1;
-		String chaine2;
-		bordereau1.add(appareilElectrique1);
-		bordereau1.add(appareilElectrique2);
-		//chaine1 = bordereau1.afficher(appareilElectrique1);
-		//chaine2 = bordereau1.afficher(appareilElectrique2);
-		return 1;
+		if (marque1.equals(marque2)) {
+			resultat = (modele1.compareTo(modele2));
+			
+			if (modele1.equals(modele2)) {
+				
+				if (puissanceMax1>puissanceMax2)resultat = 1;
+				if (puissanceMax1==puissanceMax2)resultat = 0;
+				if (puissanceMax1<puissanceMax2)resultat = -1;
+				//resultat = Integer.compare(puissanceMax1, puissanceMax2);//synthaxe à optimiser
+
+			}
+		}
+		return resultat;
 	}
 
 }

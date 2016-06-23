@@ -8,7 +8,7 @@ package com.company.domotique.appareils;
 public class AppareilThermostate extends AppareilElectrique {
 
 	private int puissanceInstantanee = 0;
-	private int incPuissance = 20;
+	private int incPuissance = 100;
 	private int valeurThermostatMax = 0;
 	private int valeurThermostat = 0;
 
@@ -100,6 +100,10 @@ public class AppareilThermostate extends AppareilElectrique {
 		this.valeurThermostatMax = valeurThermostatMax;
 	}
 
+	public AppareilThermostate(String pMarque, String pModele, int pPuissanceMaxWatts) {
+		super(pMarque, pModele, pPuissanceMaxWatts);
+	}
+
 	/**
 	 * @TODO
 	 */
@@ -118,7 +122,12 @@ public class AppareilThermostate extends AppareilElectrique {
 		}
 		return this.valeurThermostat;
 	}
-
+	public int decrementerThermostat() {
+		if(this.valeurThermostat<=this.valeurThermostatMax && valeurThermostat>0){
+			this.valeurThermostat -=1;
+		}
+		return this.valeurThermostat;
+	}
 	public void demarrer() {
 		super.isEnMarche=true;
 	}//demarrer
