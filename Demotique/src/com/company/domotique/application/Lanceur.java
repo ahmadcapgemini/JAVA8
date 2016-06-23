@@ -2,7 +2,9 @@ package com.company.domotique.application;
 
 
 
+import com.company.domotique.appareils.AppareilElectrique;
 import com.company.domotique.appareils.AppareilSecurise;
+import com.company.domotique.appareils.Bordereau;
 
 
 public class Lanceur {
@@ -68,7 +70,15 @@ public class Lanceur {
 		System.out.println("Au revoir!");
 		
 		
-	
+		
+		
+		
+		AppareilElectrique nouvelAppareil = new AppareilElectrique("philips", "300", 10000);
+		Bordereau testBordereau = new Bordereau();
+		testBordereau.add(microOnde);
+		testBordereau.add(microOnde2);
+		testBordereau.add(nouvelAppareil);
+		testBordereau.afficher();
 
 		
 		
