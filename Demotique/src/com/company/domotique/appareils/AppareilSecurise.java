@@ -17,11 +17,11 @@ public class AppareilSecurise extends AppareilThermostate {
 	public void demarrer() {
 		if (isSecuriteEnclenchee == false) {
 			super.isEnMarche = true;
-			System.out.println("La securité n'est pas enclenchée!");
-			System.out.println("l'appareil vient d'étre démarré");
+			System.out.println(this.getMarque()+ " vient d'être démarré");
+
 		} else {
-			super.isEnMarche = true;
-			isSecuriteEnclenchee = false;
+			super.isEnMarche = false;
+		
 		}
 	}// demarrer
 

@@ -130,6 +130,7 @@ public class AppareilThermostate extends AppareilElectrique {
 	}
 	public void demarrer() {
 		super.isEnMarche=true;
+		System.out.println(this.getMarque()+ " vient d'être démarré");
 	}//demarrer
 
 	/**

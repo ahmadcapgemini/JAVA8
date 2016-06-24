@@ -2,14 +2,10 @@ package com.company.domotique.application;
 
 
 
-import java.util.ArrayList;
-
-import com.company.domotique.appareils.AppareilElectrique;
 import com.company.domotique.appareils.AppareilSecurise;
-import com.company.domotique.appareils.AppareilThermostate;
 import com.company.domotique.appareils.Bordereau;
 import com.company.domotique.appareils.Compteur;
-import com.company.domotique.ihm.CadreGeneral;
+import com.company.domotique.exception.CompteurADisjoncteException;
 
 
 public class Lanceur {
@@ -51,7 +47,7 @@ public class Lanceur {
 		ordinateur.demarrer();
 
 		//etc...................................*/
-		AppareilSecurise microOnde= new AppareilSecurise("Philips", "mod123", 100, 1, false);
+		/*AppareilSecurise microOnde= new AppareilSecurise("Philips", "mod123", 200, 2, false);
 		AppareilSecurise microOnde2= new AppareilSecurise("Moulinex", "v32", 500, 5, false);
 		System.out.println("Bonjour");
 		System.out.println("***********************");
@@ -79,6 +75,7 @@ public class Lanceur {
 		
 		
 		AppareilSecurise nouvelAppareil = new AppareilSecurise("Philips", "mod123", 900, 9, false);
+		AppareilSecurise nouvelAppareil2 = new AppareilSecurise("Phil", "aa", 300, 3, false);
 
 		Bordereau testBordereau = new Bordereau();
 		testBordereau.add(microOnde);
@@ -93,17 +90,39 @@ public class Lanceur {
 		
 		System.out.println("***********************");
 		System.out.println("***********************");
+		System.out.println(microOnde.getConsommation()+" "+ microOnde2.getConsommation()+ " " + nouvelAppareil.getConsommation());
 		Compteur compteur = new Compteur("compteur", "modéle", 1000); //création compteur
-		compteur.demarrer(); microOnde.demarrer(); microOnde2.demarrer(); nouvelAppareil.demarrer();//démarrage compteur et les trois appareils
-		microOnde.setValeurThermostat(microOnde.getValeurThermostatMax());// initiation objets 
+		compteur.demarrer(); microOnde2.demarrer(); nouvelAppareil.demarrer(); nouvelAppareil2.demarrer(); //démarrage compteur et les trois appareils
+		nouvelAppareil2.setValeurThermostat(microOnde.getValeurThermostatMax());// initiation objets 
 		microOnde2.setValeurThermostat(microOnde2.getValeurThermostatMax());
 		nouvelAppareil.setValeurThermostat(nouvelAppareil.getValeurThermostatMax());
-	
-		compteur.brancher(microOnde);
+		
+		System.err.println(nouvelAppareil2.getConsommation()+" "+ microOnde2.getConsommation()+ " " + nouvelAppareil.getConsommation());
+		compteur.brancher(nouvelAppareil2);
 		compteur.brancher(microOnde2);
-		compteur.brancher(nouvelAppareil);
+		
+		compteur.brancher(nouvelAppareil);*/
 	
 		
+		AppareilSecurise a1 = new AppareilSecurise("a1", "a1", 300, 3, false); a1.demarrer(); a1.setValeurThermostat(a1.getValeurThermostatMax());
+		AppareilSecurise a2 = new AppareilSecurise("a2", "a2", 500, 5, false); a2.demarrer(); a2.setValeurThermostat(a2.getValeurThermostatMax());
+		AppareilSecurise a3 = new AppareilSecurise("a3", "a3", 900, 9, false); a3.demarrer(); a3.setValeurThermostat(a3.getValeurThermostatMax());
+		System.out.println(a1.getConsommation()+" "+a2.getConsommation()+" "+a3.getConsommation());
+		
+		Compteur compteur1 = new Compteur("compteur1", "compteur1", 1000); compteur1.demarrer();
+		
+		try{
+		compteur1.brancher(a1);
+		compteur1.brancher(a2);
+		compteur1.brancher(a3);
+		}
+		catch (CompteurADisjoncteException e) {
+			System.out.println("le compteur "+ e.getCompteurEncause().getMarque()+ " a disjoncté pour la puissance " + e.getPuissanceDemandee());
+		}
+		
+		
+		
+	
 		System.out.println("***********************");
 		System.out.println("***********************");
 		

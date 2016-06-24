@@ -41,13 +41,15 @@ public class AppareilElectrique extends Appareil implements ConsommateurDeCouran
 	*/
     public void demarrer() {
 	   isEnMarche=true;
+	   System.out.println(this.getMarque()+" vient d'être allumé");
     }//demarrer
 
    /**
     arrete l'appareil
    */
    public void arreter() {
-   	      isEnMarche=false;
+   	   isEnMarche=false;
+   	   System.out.println(this.getMarque()+" vient d'être étient");
    }//arreter
 
 	/**

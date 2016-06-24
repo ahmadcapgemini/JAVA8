@@ -5,6 +5,8 @@ import java.util.Collection;
 import java.util.Enumeration;
 import java.util.Vector;
 
+import com.company.domotique.exception.CompteurADisjoncteException;
+
 public class Compteur extends AppareilElectrique implements ProducteurDeCourant {
 
 	private int puissanceInstantanee = 20;
@@ -20,21 +22,18 @@ public class Compteur extends AppareilElectrique implements ProducteurDeCourant 
 	}
 
 	@Override
-	public void brancher(ConsommateurDeCourant cc) {
+	public void brancher(ConsommateurDeCourant cc)throws CompteurADisjoncteException {
 
 		if (this.isEnMarche) {
 
-			this.mesAppareilsBranches.add(cc);
+			this.mesAppareilsBranchesVector.add(cc);
 			int maPuissanceInstantanee= this.puissanceInstantanee + cc.getConsommation();
-			System.out.println(maPuissanceInstantanee);
-
 			if (this.iPuissanceMaxWatts < maPuissanceInstantanee) {
 				this.disjoncter();
-
+				throw new CompteurADisjoncteException(this, maPuissanceInstantanee);
 			}
 			else {
 				this.puissanceInstantanee = maPuissanceInstantanee;
-				System.out.println(maPuissanceInstantanee);
 			}
 		}
 
@@ -52,11 +51,6 @@ public class Compteur extends AppareilElectrique implements ProducteurDeCourant 
 
 
 
-	}
-
-	public int getEnergieFournie() {
-		// TODO Auto-generated method stub
-		return -1;
 	}
 
 

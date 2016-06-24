@@ -60,11 +60,11 @@ public class PanneauCompteur
 	}
 
 	public void majConso() {
-		int iNrj = compteur.getEnergieFournie();
+		int iNrj = compteur.getConsommation();
 		
 		//Test s'il y a eu disjonction ou non
 		if (iNrj != -1) {
-			lblConso.setText("" + compteur.getEnergieFournie());
+			lblConso.setText("" + compteur.getConsommation());
 		} 
 		else {
 			lblConso.setText("0");
